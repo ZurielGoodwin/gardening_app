@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Forth</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Welcome {{user.first_name}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/garden/new" class="btn btn-primary">Add to Garden</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+    </div>
+    </nav>
+<sub-nav>
+    <div class="d-flex justify-content-between align-items-center col-12" ><h4></h4></div>
+</sub-nav>
+
+<main>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <span class="border border-dark">
+    <div class ="col-8 mx-auto">
+        <div style= "background-color:#87a187;">
+    <table class="table">
+        <h1 style="text-align: center;">My Garden</h1>
+        <tbody>
+
+            <div class="col-8 mx-auto">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Crop</th>
+                            <th>Variety</th>
+                            <th>Days to Harvest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for garden in gardens %}
+                        <tr>
+                            <td>{{garden.crop}}</td>
+                            <td><a href="/garden/{{garden.id}}" class="text-white">{{garden.variety}}</td></a>
+                            <td>{{garden.days_to_harvest}}</td>
+                        </tr>
+
+                    </tbody>
+
+            
+                </td>  
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</span>
+    </div>
+    
+</main>
+</style>
