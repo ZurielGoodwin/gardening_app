@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Garden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <nav class="d-flex justify-content-between align-items-center col-12">
+        <h1 class="text-center">Welcome, {{user.first_name}}</h1>
+        <div class="d-flex col-4 justify-content-around">
+            <a href="/garden" class="btn btn-primary">Dashboard</a>
+            <a href="/garden/new" class="btn btn-primary">Add Garden</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
+    </div>
+    </nav>
+</head>
+<body>
+    <main>
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+                {%if messages %}
+                    {% for m in messages %}
+                        <h5>{{m}}</h5>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+
+    <form action="/garden/edit" method="POST">
+            <h2 class="primary" style="text-align: center;">Edit a Garden</h2>
+            <!--<input type="hidden" id="id" name="user_id" value="{{edit.id}}"> -->
+    <div class="col-8 mx-auto">
+    <div class="form-group">
+        <label for="crop">Crop: </label>
+        <input type="text" id="crop" name="crop" value="{{edit.crop}}">
+    </div>
+
+    <div class="form-group">
+        <label for="variety">Variety: </label>
+        <input type="text" id="variety" name="variety" value="{{edit.variety}}">
+    </div>
+
+    <div class="form-group">
+        <label for="date_planted">Planted On: </label>
+        <input type="date" id="date_planted" name="date_planted" value="{{edit.date_planted}}">
+    </div>
+
+    <div class="form-group">
+        <label for="days_to_harvest">Days Until Harvest: </label>
+        <input type="number" min="1" step="any" name="days_to_harvest" value="{{edit.days_to_harvest}}">
+    <div class="form-group">
+
+    <div class="form-group">
+        <label for="notes">Notes: </label>
+        <textarea name="notes" id="notes" cols="30" rows="10" value="{{edit.notes}}"></textarea>
+    </div>
+
+
+    <button>Submit</button>
+</div>
+</form>
+</div>
+</body>
+</html>
